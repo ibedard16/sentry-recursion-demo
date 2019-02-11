@@ -4,3 +4,7 @@
 <br />
 <br />
 <button (click)="runChangeDetection()">Run change detection</button>
+<br />
+<br />
+<button (click)="wrapConsoleLog()" [disabled]="consoleLogWrapped">Wrap console.log call</button>
+<button (click)="unwrapConsoleLog()" [disabled]="!consoleLogWrapped">Unwrap console.log call</button>
