@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
   private timesCalled = 0;
   private loggingEnabled = false;
   private consoleLogWrapped = false;
-  private originalConsoleLogFunc: (args: any[]) => void;
+  private originalConsoleLogFunc: (message?: any, ...optionalParams: any[]) => void;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -41,8 +41,8 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    console.log = (...args) => {
-      this.zone.runOutsideAngular(() => this.originalConsoleLogFunc(args));
+    console.log = (message: any, ...optionalParams: any[]) => {
+      this.zone.runOutsideAngular(() => this.originalConsoleLogFunc(message, optionalParams));
     };
     this.consoleLogWrapped = true;
   }
