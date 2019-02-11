@@ -7,9 +7,10 @@ import { Component, ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   private timesChangeDetectionRun = 0;
-  private loggingEnabled = false;
   private consoleLogWrapped = false;
   private originalConsoleLogFunc: (message?: any, ...optionalParams: any[]) => void;
+
+  loggingEnabled = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
