@@ -9,9 +9,21 @@ What this all boils down to, is that if `console.log()` is called on a function 
 To summarize the loop:
 `Change detection -> function -> console.log -> Sentry breadcrumb -> Change detection.`
 
-The issue can be avoided if the call to `console.log()` is wrapped to run outside of Angular. But that seems impractical.
+The issue can be avoided if the call to `console.log()` is wrapped to run outside of Angular. This would prevent any logic in the `console.log()` call from triggering change detection, and break the loop.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
+
+## The Demo
+
+Most of the demo is pretty self-explanitory, I've just written it out here so there is no ambiguity about the Demo's behavior.
+
+The number at the top of the screen, following `Number of change detection runs:`, represents how many times change detection has run. Note: because the application displays the number of times change detection was run, dev mode change detection will display errors in the console like `Expression has changed after it was checked`. These are unavoidable, given that dev mode change detection looks for values that change before and after change detection was run.
+
+The buttons `Enable console.log`/`Disable console.log` will toggle whether the function bound to the view calls `console.log`. Enabling it will cause the counter to repeatedly increase, via the behavior outlined above.
+
+The buttons `Wrap console.log call`/`Unwrap console.log call` will toggle whether `console.log()` is run outside of Angular. If it run outside of Angular, change detection will not be called recursively.
+
+`Run change detection` will manually trigger change detection.
 
 ## Development server
 

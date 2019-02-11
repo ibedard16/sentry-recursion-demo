@@ -6,7 +6,7 @@ import { Component, ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private timesCalled = 0;
+  private timesChangeDetectionRun = 0;
   private loggingEnabled = false;
   private consoleLogWrapped = false;
   private originalConsoleLogFunc: (message?: any, ...optionalParams: any[]) => void;
@@ -21,15 +21,20 @@ export class AppComponent implements OnInit {
     this.originalConsoleLogFunc = console.log;
   }
 
-  getTimesFunctionWasCalled() {
+  getChangeDetectionRunCount() {
     if (this.loggingEnabled) {
       console.log('function called!');
     }
-    return ++this.timesCalled;
+
+    return ++this.timesChangeDetectionRun;
   }
 
-  toggleLogging() {
-    this.loggingEnabled = !this.loggingEnabled;
+  enableLogging() {
+    this.loggingEnabled = true;
+  }
+
+  disableLogging() {
+    this.loggingEnabled = false;
   }
 
   runChangeDetection() {

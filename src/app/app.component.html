@@ -1,10 +1,13 @@
-<h1>Times function called: {{ getTimesFunctionWasCalled() }}</h1>
-
-<button (click)="toggleLogging()">Toggle console.log enabled</button>
+<h1>Number of change detection runs: {{ getChangeDetectionRunCount() }}</h1>
+<i>Apologies for the console errors regarding Dev mode change detection. They were unavoidable, given the demo displays how many times change detection has run.</i>
 <br />
 <br />
-<button (click)="runChangeDetection()">Run change detection</button>
+<button (click)="enableLogging()" [disabled]="loggingEnabled">Enable console.log</button>
+<button (click)="disableLogging()" [disabled]="!loggingEnabled">Disable console.log</button>
 <br />
 <br />
 <button (click)="wrapConsoleLog()" [disabled]="consoleLogWrapped">Wrap console.log call</button>
 <button (click)="unwrapConsoleLog()" [disabled]="!consoleLogWrapped">Unwrap console.log call</button>
+<br />
+<br />
+<button (click)="runChangeDetection()">Run change detection</button>
